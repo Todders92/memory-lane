@@ -4,26 +4,26 @@ import Memory from "./Memory";
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
-function TicketList(props){
+function MemoryList(props){
 
   useFirestoreConnect([
-    { collection: 'tickets' }
+    { collection: 'memories' }
   ]);
 
-  const tickets = useSelector(state => state.firestore.ordered.tickets);
+  const memories = useSelector(state => state.firestore.ordered.memories);
 
-  if (isLoaded(tickets)) {
+  if (isLoaded(memories)) {
     return (
       <React.Fragment>
         <hr/>
-        {tickets.map((ticket) => {
-          return <Ticket
-            whenTicketClicked = { props.onTicketSelection }
-            names={ticket.names}
-            location={ticket.location}
-            issue={ticket.issue}
-            id={ticket.id}
-            key={ticket.id}/>
+        {memories.map((memory) => {
+          return <Memory
+            whenMemoryClicked = { props.onMemorySelection }
+            name={memory.name}
+            location={memory.location}
+            detail={memory.detail}
+            id={memory.id}
+            key={memory.id}/>
         })}
       </React.Fragment>
     );
@@ -36,8 +36,8 @@ function TicketList(props){
   }
 }
 
-TicketList.propTypes = {
-  onTicketSelection: PropTypes.func
+MemoryList.propTypes = {
+  onMemorySelection: PropTypes.func
 };
 
-export default TicketList;
+export default MemoryList;
