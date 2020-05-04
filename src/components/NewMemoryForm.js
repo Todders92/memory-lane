@@ -12,6 +12,7 @@ function NewMemoryForm(props){
     console.log("in add Memory to Firestore")
     firestore.collection('memories').add(
       {
+        email: props.userEmail,
         name: event.target.name.value,
         location: event.target.location.value, 
         detail: event.target.detail.value,

@@ -44,6 +44,7 @@ class MemoryControl extends React.Component {
         name: memory.get("name"),
         location: memory.get("location"),
         detail: memory.get("detail"),
+        email: memory.get("email"),
         id: memory.id
       }
       this.setState({selectedMemory: firestoreMemory });
@@ -85,9 +86,8 @@ class MemoryControl extends React.Component {
     )
   } 
     if ((isLoaded(auth)) && (auth.currentUser != null)) {
-      console.log(auth.currentUser.email);
-      // let userEmail = auth.currentUser.email;
       this.state.userEmail = auth.currentUser.email;
+      console.log(this.state.userEmail);
       if (this.state.editing ) {      
         currentlyVisibleState = <EditMemoryForm memory = {this.state.selectedMemory} onEditMemory = {this.handleEditingMemoryInList} />
         buttonText = "Return to Memory List";
@@ -95,14 +95,21 @@ class MemoryControl extends React.Component {
         currentlyVisibleState = 
         <MemoryDetail 
           memory = {this.state.selectedMemory} 
+          userEmail = {this.state.userEmail}
           onClickingDelete = {this.handleDeletingMemory} 
           onClickingEdit = {this.handleEditClick} />
         buttonText = "Return to Memory List";
       } else if (this.props.formVisibleOnPage) {
-        currentlyVisibleState = <NewMemoryForm onNewMemoryCreation={this.handleAddingNewMemoryToList}  />;
-        buttonText = "Return to Memory List";
+        currentlyVisibleState = 
+        <NewMemoryForm 
+          userEmail = {this.state.userEmail} 
+          onNewMemoryCreation={this.handleAddingNewMemoryToList}  />;
+          buttonText = "Return to Memory List";
       } else {
-        currentlyVisibleState = <MemoryList onMemorySelection={this.handleChangingSelectedMemory} />;
+        currentlyVisibleState = 
+        <MemoryList
+          userEmail = {this.state.userEmail} 
+          onMemorySelection={this.handleChangingSelectedMemory} />;
         buttonText = "Add Memory";
       }
       return (

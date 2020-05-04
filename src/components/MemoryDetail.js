@@ -7,6 +7,8 @@ function MemoryDetail(props){
   return (
     <React.Fragment>
       <h1>Memory Detail</h1>
+      {console.log(memory)}
+      <p>User Email: {memory.email}</p>
       <h3>{memory.location} - {memory.name}</h3>
       <p><em>{memory.detail}</em></p>
       <button onClick={ props.onClickingEdit }>Update Memory</button>
