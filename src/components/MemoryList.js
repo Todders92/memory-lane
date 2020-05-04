@@ -22,6 +22,7 @@ function MemoryList(props){
             name={memory.name}
             location={memory.location}
             detail={memory.detail}
+            email={memory.email}
             id={memory.id}
             key={memory.id}/>
         })}
@@ -30,7 +31,7 @@ function MemoryList(props){
   } else {
     return (
       <React.Fragment>
-        <h3>Loading...</h3>
+        <h3>'Membering...</h3>
       </React.Fragment>
     )
   }

@@ -8,6 +8,7 @@ function Memory(props){
         <h3>{props.location} - {props.name}</h3>
         <p><em>{props.detail}</em></p>
         <p><em>{props.formattedWaitTime}</em></p>
+        <p>{props.userEmail}</p>
       </div>
       <hr/>
     </React.Fragment>
