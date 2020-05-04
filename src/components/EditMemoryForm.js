@@ -6,15 +6,15 @@ import { useFirestore } from 'react-redux-firebase';
 function EditMemoryForm (props) {
   const firestore = useFirestore();
   
-  const { memor } = props;
+  const { memory } = props;
 
   function handleEditMemoryFormSubmission(event) {
     event.preventDefault();
     props.onEditMemory();
     const propertiesToUpdate = {
-      names: event.target.names.value,
+      name: event.target.name.value,
       location: event.target.location.value,
-      issue: event.target.issue.value
+      detail: event.target.detail.value
     }
     return firestore.update({collection: 'memories', doc: memory.id }, propertiesToUpdate)
   }
